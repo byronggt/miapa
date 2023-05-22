@@ -1,6 +1,7 @@
 # Dr. Byron González
 # Dr. Ezequiel López
 # http://cete.fausac.gt
+
 # Colocar en memoria las bibliotecas a necesitar
 if(!require(corrplot)){install.packages("corrplot")}
 if(!require(PerformanceAnalytics)){install.packages("PerformanceAnalytics")}
