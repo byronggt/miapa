@@ -4,6 +4,12 @@
 
 if(!require(data.table)){install.packages("data.table")}
 if(!require(agricolae)){install.packages("agricolae")}
+if(!require(lsmeans)){install.packages("lsmeans")}
+if(!require(ggplot2)){install.packages("ggplot2")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+
+# Eliminar objetos antiguos de la memoria
+rm(list=ls())
 
 PD<- fread("https://archive.org/download/Cerdos_201810/Cerdos.txt",header=T, sep="\t", dec=",")
 Raz<- factor(PD$Raza)
@@ -14,6 +20,24 @@ Pe1<-as.numeric(Pe)
 
 # Gráfico de la interacción
 interaction.plot(Raz,Con,Pe1, fixed=F, xlab="Raza de Cerdos", ylab="Ganancia de Peso", legend = T, type = "b",trace.label="Concentrado", pch = c(5,7,5))
+
+# Gráfico de interacción con ggplot2
+PD %>% 
+  ggplot() +
+  aes(x = Raz, color = Con, group = Con, y = Pe1) +
+  stat_summary(fun = mean, geom = "point") +
+  stat_summary(fun = mean, geom = "line") +
+  xlab("Razas") + ylab("Peso de los cerdos")+
+  labs(colour = "% Concentrado")
+
+PD %>% 
+  ggplot() +
+  aes(x = Con, color = Raz, group = Raz, y = Pe1) +
+  stat_summary(fun = mean, geom = "point") +
+  stat_summary(fun = mean, geom = "line") +
+  xlab("% Concentrado") + ylab("Peso de los cerdos")+
+  labs(colour = "Razas")
+
 
 # Análisis de varianza
 mod.DCA <- aov(Pe1~Raz+Error(Re/Raz)+Con+Raz:Con)
@@ -59,3 +83,4 @@ Tukey_C<-HSD.test(Pe1, Con, DFerror = 12, MSerror = 3.45);Tukey_C
 # Interacción Tipo de razas y porcentaje de concentrado
 
 Tukey_RC<-HSD.test(Pe1, Raz:Con, DFerror = 12, MSerror = 3.45);Tukey_RC
+
