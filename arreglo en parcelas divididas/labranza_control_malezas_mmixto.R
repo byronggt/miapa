@@ -34,7 +34,7 @@ plot(mod.mixto)
 shapiro.test(residuals(mod.mixto))
 
 
-anova(mod.split, ddf = "Kenward-Roger")
+anova(mod.mixto, ddf = "Kenward-Roger")
 
 # Dado que la interacción es significativa, se solicita 
 # el procedimiento emmeans
