@@ -3,6 +3,7 @@
 # http://cete.fausac.gt
 
 # Con información del texto de http://statforbiology.com
+# de Andrea Onofri and Dario Sacco
 
 rm(list=ls())
 
