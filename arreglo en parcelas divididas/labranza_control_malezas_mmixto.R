@@ -20,7 +20,7 @@ mod.aov <- aov(Yield ~ Block + Tillage*WeedControl +
 summary(mod.aov)
 
 # Andeva con modelos mixtos
-# Considerar la labranza como efecto aleatorio
+# Considerar la combinación de bloque*labranza como efecto aleatorio
 
 if(!require(lme4)){install.packages("lme4")}
 if(!require(lmerTest)){install.packages("lmerTest")}
