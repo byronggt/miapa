@@ -2,6 +2,7 @@
 # Dr. Ezequiel López
 # http://cete.fausac.gt
 
+rm(list = ls())
 # Colocar en memoria las bibliotecas a necesitar
 if(!require(readxl)){install.packages("readxl")}
 if(!require(agricolae)){install.packages("agricolae")}
@@ -15,14 +16,13 @@ rep<-as.factor(rep)
 pconcent<-as.factor(pconcent)
 
 # Gráfico de la interacción
-attach(cerdos)
-interaction.plot(raza,pconcent,gpeso, fixed=T, xlab="Raza de Cerdos", ylab="Ganancia de Peso", legend = T, type = "b",trace.label="Concentrado", pch = c(5,7,5))
+interaction.plot(raza,pconcent,gpeso, fixed=F, xlab="Raza de Cerdos", ylab="Ganancia de Peso", legend = T, type = "b",trace.label="Concentrado", pch = c(5,7,5))
 
 # Análisis de varianza
 model.DCA <- aov(gpeso~raza+Error(rep/raza)+pconcent+raza:pconcent)
 summary(model.DCA)
 model.tables(model.DCA, type="means")
-summary(mod.DCA)
+
 
 # Revisión de los supuestos del modelo
 # Andeva para calcular un solo residuo
