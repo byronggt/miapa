@@ -22,7 +22,7 @@ interaction.plot(raza,pconcent,gpeso, fixed=F, xlab="Raza de Cerdos", ylab="Gana
 model.DCA <- aov(gpeso~raza+Error(rep/raza)+pconcent+raza:pconcent)
 summary(model.DCA)
 model.tables(model.DCA, type="means")
-
+detach(cerdos)
 
 # Revisión de los supuestos del modelo
 # Andeva para calcular un solo residuo
