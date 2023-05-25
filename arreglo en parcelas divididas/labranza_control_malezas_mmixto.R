@@ -25,7 +25,7 @@ mod.aov1<-aov(Yield~Block+Tillage*WeedControl+Block:Tillage, data=labrm)
 summary(mod.aov1)
 plot(mod.aov1,1)
 plot(mod.aov1,2)
-shapiro.test(mod.aov1$residuals)
+plot(mod.aov1,3)
 
 # Andeva con modelos mixtos
 # Considerar la combinación de bloque*labranza como efecto aleatorio
