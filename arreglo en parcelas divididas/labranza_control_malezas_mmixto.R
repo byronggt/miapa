@@ -10,14 +10,14 @@ rm(list=ls())
 if(!require(tidyverse)){install.packages("tidyverse")}
 
 fileName <- "https://www.casaonofri.it/_datasets/beet.csv"
-dataset <- read_csv(fileName)
-dataset <- dataset %>% 
+labrm <- read_csv(fileName)
+labrm <- labrm %>% 
   mutate(across(c(Tillage, WeedControl, Block), .fns = factor))
-head(dataset)
+head(labrm)
 
 # Andeva con efectos fijos
 mod.aov <- aov(Yield ~ Block + Tillage*WeedControl +
-                  Error(Block:Tillage), data = dataset)
+                  Error(Block:Tillage), data = labrm)
 summary(mod.aov)
 
 # Andeva con modelos mixtos
@@ -28,7 +28,7 @@ if(!require(lmerTest)){install.packages("lmerTest")}
 
 mod.mixto <- lmer(Yield ~ Block + WeedControl*Tillage +
                          (1|Block:Tillage), 
-                       data=dataset)
+                       data=labrm)
 # Revisar el cumplimiento de los supuestos
 plot(mod.mixto)
 shapiro.test(residuals(mod.mixto))
