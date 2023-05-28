@@ -46,7 +46,12 @@ franjas %>%
 fran.anova<-strip.plot(bloque, nitr, riego, resp1)
 
 # Revisión de los supuestos del Andeva
-# Pendiente
+# Modificar el ingreso del modelo (Pendiente de revisión)
+mod1<-lm(resp1~bloque+nitr+nitr*bloque+riego+riego*bloque+nitr*riego)
+plot(mod1,1)
+plot(mod1,2)
+anova(mod1)
+shapiro.test(mod1$residuals)
 
 # Pruebas de comparación múltiple de medias
 
