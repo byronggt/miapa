@@ -1,5 +1,7 @@
 # Ajuste de modelo polinomial de grado 2 para la madera y tensión
-# Dr. Byron González http://cete.fausac.gt
+# Dr. Byron González
+# Dr. Ezequiel López
+# http://cete.fausac.gt
 # Importar el archivo de datos
 library(readxl)
 madera<-read_excel("madera.y.tension.xlsx")
