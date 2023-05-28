@@ -8,6 +8,7 @@
 rm(list=ls())
 
 if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(performance)){install.packages("performance")}
 
 fileName <- "https://www.casaonofri.it/_datasets/beet.csv"
 labrm <- read_csv(fileName)
@@ -23,9 +24,16 @@ summary(mod.aov)
 # Verificación de supuestos del modelo fijo 
 mod.aov1<-aov(Yield~Block+Tillage*WeedControl+Block:Tillage, data=labrm)
 summary(mod.aov1)
+dev.off()
 plot(mod.aov1,1)
 plot(mod.aov1,2)
 plot(mod.aov1,3)
+
+mod.aov2<-lm(Yield~Block+Tillage*WeedControl+Block*Tillage, data=labrm)
+anova(mod.aov2, test=F)
+windows(width = 12, height = 10)
+check_model(mod.aov2)
+check_normality(mod.aov2)
 
 # Andeva con modelos mixtos
 # Considerar la combinación de bloque*labranza como efecto aleatorio
