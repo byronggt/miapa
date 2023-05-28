@@ -20,7 +20,7 @@ mod.aov <- aov(Yield ~ Block + Tillage*WeedControl +
                   Error(Block:Tillage), data = labrm)
 summary(mod.aov)
 
-# Verificación de supuestos (Revisar el modelo)
+# Verificación de supuestos del modelo fijo 
 mod.aov1<-aov(Yield~Block+Tillage*WeedControl+Block:Tillage, data=labrm)
 summary(mod.aov1)
 plot(mod.aov1,1)
