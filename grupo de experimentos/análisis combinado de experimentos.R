@@ -3,7 +3,11 @@
 # http://cete.fausac.gt
 
 if(!require(lattice)){install.packages("lattice")}
+if(!require(tidyverse)){install.packages("tidyverse")}
 if(!require(performance)){install.packages("performance")}
+if(!require(nlme)){install.packages("nlme")}
+if(!require(lme4)){install.packages("lme4")}
+if(!require(lmerTest)){install.packages("lmerTest")}
 if(!require(readxl)){install.packages("readxl")}
 
 # Experimento en bloques completos al azar
@@ -17,6 +21,7 @@ grupo$Lin<- as.factor(grupo$Lin)
 grupo$Bloq<-as.factor(grupo$Bloq)
 
 attach(grupo)
+
 # Gráfico da interacción
 interaction.plot(Loc,Lin,Rend, fixed=T, xlab="Localidades", ylab="Rendimento") 
 
@@ -36,18 +41,19 @@ xyplot(Rend~Loc|Lin)
 #  Bloq: efecto fijo de bloques, i=4
 #  Lin: efecto fijo de las líneas, j=14
 #  e: error experimental
+
 names(grupo)
 
 # Análisis para cada localidad (Ejemplo para el Jícaro)
 jic <- subset(grupo, Loc=="Jicaro")
 
 aov.jic<- lm(Rend~Bloq+Lin) # modelo de efectos fijos
+summary(aov.jic)
 plot(aov.jic,1)
 plot(aov.jic,2)
-anova(aov.jic)
 
 # Análisis para todas las localidades de una sola vez
-das <- split(grupo, grupo$Loc) # cria uma lista em que cada slot � o data.frame de um local
+das <- split(grupo, grupo$Loc) # Genera una lista para cada localidad
 str(das)
 lapply(das, function(loc) with(loc, tapply(Rend, list(Bloq,Lin), identity)))
 
@@ -59,12 +65,35 @@ glrs <- sapply(m01, df.residual)   # Grados de libertad
 qmrs <- sapply(m01, deviance)/glrs # Cuadrados medios
 
 # Ajuste para el análisis de los residuos (modelo reducido)
+
 mc11 <- lm(Rend~Loc/Bloq+Loc*Lin)
 anova(mc11)
 windows(10,10)
 check_model(mc11)
 check_normality(mc11)
 
-# Análisis con modelos mixtos
+# Análisis con modelos mixtos (Pendiente)
+grupo %>% 
+  mutate(Loc_Bloq=Loc*Bloq)
 
 
+mc13<-lme(Rend~1+Loc+Lin+Loc:Linea
+      ,random=list(Loc_Bloq=pdIdent(~1))
+      ,weights=varComb(varIdent(form=~1|Loc))
+      ,method="REML"
+      ,control=lmeControl(niterEM=150
+      ,msMaxIter=200)
+      ,na.action=na.omit
+      ,data=grupo
+      ,keep.data=FALSE)
+
+
+mc13<-lme(Rend~1+Loc+Lin+Loc:Linea
+          ,random=list(Loc_Bloq=pdIdent(~1))
+          ,weights=varComb(varIdent(form=~1|Loc))
+          ,method="REML"
+          ,control=lmeControl(niterEM=150
+                              ,msMaxIter=200)
+          ,na.action=na.omit
+          ,data=grupo
+          ,keep.data=FALSE)
