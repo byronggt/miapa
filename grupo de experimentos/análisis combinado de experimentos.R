@@ -19,6 +19,7 @@ head(grupo)
 grupo$Loc<- as.factor(grupo$Loc)
 grupo$Lin<- as.factor(grupo$Lin)
 grupo$Bloq<-as.factor(grupo$Bloq)
+grupo$Loc_Bloq<-as.factor(grupo$Loc_Bloq)
 
 attach(grupo)
 
@@ -73,13 +74,9 @@ check_model(mc11)
 check_normality(mc11)
 
 # Análisis con modelos mixtos (Pendiente)
-grupo %>% 
-  mutate(Loc_Bloq=Loc*Bloq)
-
 
 mc13<-lme(Rend~1+Loc+Lin+Loc:Linea
       ,random=list(Loc_Bloq=pdIdent(~1))
-      ,weights=varComb(varIdent(form=~1|Loc))
       ,method="REML"
       ,control=lmeControl(niterEM=150
       ,msMaxIter=200)
@@ -88,12 +85,12 @@ mc13<-lme(Rend~1+Loc+Lin+Loc:Linea
       ,keep.data=FALSE)
 
 
-mc13<-lme(Rend~1+Loc+Lin+Loc:Linea
-          ,random=list(Loc_Bloq=pdIdent(~1))
+mc14<-lme(Rend~1+Loc+Lin+Loc:Linea
+          ,random=list(Loc=pdIdent(~1),Bloq=pdIdent(~1))
           ,weights=varComb(varIdent(form=~1|Loc))
           ,method="REML"
           ,control=lmeControl(niterEM=150
-                              ,msMaxIter=200)
+          ,msMaxIter=200)
           ,na.action=na.omit
           ,data=grupo
           ,keep.data=FALSE)
