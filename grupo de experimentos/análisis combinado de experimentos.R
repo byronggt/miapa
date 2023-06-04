@@ -73,7 +73,7 @@ windows(10,10)
 check_model(mc11)
 check_normality(mc11)
 
-# Análisis con modelos mixtos (Pendiente)
+# Análisis con modelos mixtos 
 
 mc15<-lme(Rend~1+Loc+Lin+Loc:Lin
           ,random=list(Loc_Bloq=pdIdent(~1))
@@ -85,7 +85,7 @@ mc15<-lme(Rend~1+Loc+Lin+Loc:Lin
           ,data=grupo
           ,keep.data=FALSE)
 summary(mc15)
-anova(mc15) 
+anova(mc15) # Significancia en la interacción de localidad*línea
 
 # Pendiente las pruebas de medias
 
