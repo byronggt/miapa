@@ -75,17 +75,7 @@ check_normality(mc11)
 
 # Análisis con modelos mixtos (Pendiente)
 
-mc13<-lme(Rend~1+Loc+Lin+Loc:Linea
-      ,random=list(Loc_Bloq=pdIdent(~1))
-      ,method="REML"
-      ,control=lmeControl(niterEM=150
-      ,msMaxIter=200)
-      ,na.action=na.omit
-      ,data=grupo
-      ,keep.data=FALSE)
-
-
-mc14<-lme(Rend~1+Loc+Lin+Loc:Linea
+mc14<-lme(Rend~1+Loc+Lin+Loc:Lin
           ,random=list(Loc=pdIdent(~1),Bloq=pdIdent(~1))
           ,weights=varComb(varIdent(form=~1|Loc))
           ,method="REML"
@@ -94,3 +84,7 @@ mc14<-lme(Rend~1+Loc+Lin+Loc:Linea
           ,na.action=na.omit
           ,data=grupo
           ,keep.data=FALSE)
+summary(mc14)
+anova(mc14) # Revisar NaN
+
+
