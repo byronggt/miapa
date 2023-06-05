@@ -9,6 +9,8 @@ if(!require(performance)){install.packages("performance")}
 if(!require(nlme)){install.packages("nlme")}
 if(!require(lme4)){install.packages("lme4")}
 if(!require(lmerTest)){install.packages("lmerTest")}
+if(!require(emmeans)){install.packages("emmeans")}
+if(!require(multcomp)){install.packages("multcomp")}
 if(!require(readxl)){install.packages("readxl")}
 
 # Experimento en bloques completos al azar
@@ -115,4 +117,6 @@ plot(mc13) # Atención
 qqPlot(mc13$residuals)
 
 # Prueba de medias (pendiente)
-
+emm <- emmeans(mc13, specs =~Lin*Loc )
+emm
+contrast(emm, method = "tukey")
