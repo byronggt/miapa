@@ -2,6 +2,7 @@
 # Dr. Ezequiel López
 # http://cete.fausac.gt
 
+if(!require(car)){install.packages("car")}
 if(!require(lattice)){install.packages("lattice")}
 if(!require(tidyverse)){install.packages("tidyverse")}
 if(!require(performance)){install.packages("performance")}
@@ -92,6 +93,7 @@ anova(mc12)
 plot(Loc,mc12$residuals) # Atención
 plot(Lin,mc12$residuals)
 plot(mc12) # Atención
+qqPlot(mc12$residuals) # Atención
 
 # Anova mixto, con modelación de la varianza
 # de acuerdo a cada localidad
@@ -110,6 +112,7 @@ anova(mc13) # Significancia en la interacción de localidad*línea
 plot(Loc,mc13$residuals) # Atención
 plot(Lin,mc13$residuals)
 plot(mc13) # Atención
+qqPlot(mc13$residuals)
 
-# Pendiente las pruebas de medias
+# Prueba de medias (pendiente)
 
