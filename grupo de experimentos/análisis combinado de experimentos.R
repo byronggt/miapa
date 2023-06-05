@@ -73,19 +73,43 @@ windows(10,10)
 check_model(mc11)
 check_normality(mc11)
 
-# Análisis con modelos mixtos 
+## Análisis con modelos mixtos 
 
-mc15<-lme(Rend~1+Loc+Lin+Loc:Lin
+# Agregar la combinación de bloque*loc como efecto aleatorio
+
+mc12<-lme(Rend~1+Loc+Lin+Loc:Lin
           ,random=list(Loc_Bloq=pdIdent(~1))
-          ,weights=varComb(varIdent(form=~1|Loc))
           ,method="REML"
           ,control=lmeControl(niterEM=150
-                              ,msMaxIter=200)
+          ,msMaxIter=200)
           ,na.action=na.omit
           ,data=grupo
           ,keep.data=FALSE)
-summary(mc15)
-anova(mc15) # Significancia en la interacción de localidad*línea
+summary(mc12)
+anova(mc12)
+
+# Revisión del cumplimiento de los supuestos del anova
+plot(Loc,mc12$residuals) # Atención
+plot(Lin,mc12$residuals)
+plot(mc12) # Atención
+
+# Anova mixto, con modelación de la varianza
+# de acuerdo a cada localidad
+
+mc13<-lme(Rend~1+Loc+Lin+Loc:Lin
+          ,random=list(Loc_Bloq=pdIdent(~1))
+          ,weights=varComb(varIdent(form=~1|Loc)) # Atención
+          ,method="REML"
+          ,control=lmeControl(niterEM=150
+          ,msMaxIter=200)
+          ,na.action=na.omit
+          ,data=grupo
+          ,keep.data=FALSE)
+summary(mc13)
+anova(mc13) # Significancia en la interacción de localidad*línea
+plot(Loc,mc13$residuals) # Atención
+plot(Lin,mc13$residuals)
+plot(mc13) # Atención
 
 # Pendiente las pruebas de medias
 
