@@ -116,7 +116,7 @@ plot(Lin,mc13$residuals)
 plot(mc13) # Atención
 qqPlot(mc13$residuals)
 
-# Prueba de medias (pendiente)
+# Prueba de medias (pendiente de mostrar solamente medias y EE)
 
 results_m0<-emmeans(mc13, specs =~Lin*Loc) %>% 
   multcomp::cld(Letters=letters, sort=T, reverse=T) %>% 
