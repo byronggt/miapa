@@ -117,6 +117,8 @@ plot(mc13) # Atención
 qqPlot(mc13$residuals)
 
 # Prueba de medias (pendiente)
-emm <- emmeans(mc13, specs =~Lin*Loc )
-emm
-contrast(emm, method = "tukey")
+
+results_m0<-emmeans(mc13, specs =~Lin*Loc) %>% 
+  multcomp::cld(Letters=letters, sort=T, reverse=T) %>% 
+  as.data.frame()
+results_m0
