@@ -4,7 +4,7 @@
 
 if(!require(readxl)){install.packages("readxl")} # Lectura de archivos de Excel
 
-nem<-read_excel("neml_ec3.xlsx")
+nem<-read_excel("nem_lec3.xlsx")
 print(nem)
 attach(nem)
 # Anova con la variable original y revisión de supuestos
