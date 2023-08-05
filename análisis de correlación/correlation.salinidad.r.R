@@ -13,11 +13,16 @@ if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(Hmisc)){install.packages("Hmisc")} 
 if(!require(plotrix)){install.packages("plotrix")}
 if(!require(ellipse)){install.packages("ellipse")}
+if(!require(RcmdrMisc)){install.packages("RcmdrMisc")}
 if(!require(readxl)){install.packages("readxl")}
 
 # Lectura de la tabla de datos de salinidad
 salinidad<-read_excel("salinidad.xlsx")
 plot(salinidad)
+head(salinidad)
+
+cor(salinidad[,c("pH","CE","Ca2+","Mg2+","Na+","K+","SO4 2-","STD")], use="complete")
+rcorr.adjust(salinidad[,c("pH","CE","Ca2+","Mg2+","Na+","K+","SO4 2-","STD")], type="pearson", use="complete")
 
 corrplot(cor(salinidad), method="circle")
 corrplot(cor(salinidad), method="ellipse")
