@@ -65,10 +65,10 @@ ggcorrplot(mcor, p.mat = p.mat, hc.order = TRUE,
 # En la diagonal principal se ubican las varianzas y fuera de ella las covarianzas 
 # entre pares de variables
 
-m<-round(cov(df),2)
+m<-round(cov(df),2);m
 
 # Debido a cuestiones de unidades de medida, difícilmente identificamos cuando una 
-# covarianza es alta o baja.
+# covarianza es alta o baja
 
 # Construyendo la matriz de correlaciones
 
