@@ -55,9 +55,9 @@ cor.test(Ca,Mg, method = "pearson")
 cor.test(ce,Ca, method = "pearson")
 
 # matriz de correlación
-mcor<-cor(df)
+mcor<-cor(df); mcor
 
-p.mat <- cor_pmat(mcor) # Calcular los valores de p
+p.mat <- cor_pmat(mcor); p.mat # Calcular los valores de p
 
 ggcorrplot(mcor, hc.order = TRUE,
            type = "lower", p.mat = p.mat)
