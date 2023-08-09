@@ -20,6 +20,7 @@ if(!require(readxl)){install.packages("readxl")}
 salinidad<-read_excel("salinidad.xlsx")
 plot(salinidad)
 head(salinidad)
+tail(salinidad)
 
 cor(salinidad[,c("pH","CE","Ca2+","Mg2+","Na+","K+","SO4 2-","STD")], use="complete")
 rcorr.adjust(salinidad[,c("pH","CE","Ca2+","Mg2+","Na+","K+","SO4 2-","STD")], type="pearson", use="complete")
