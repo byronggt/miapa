@@ -41,8 +41,7 @@ abline(reg, pred = volumen, col="red", lwd=2)
 # a un modelo de potencia de la forma volumen=a*diametro^b
 # El modelo original es Log(volumen)=-7.69002+2.06162Log(diametro)
 # Antilogaritmo a -7.69002
-a<-exp(-7.69002)
-a
+a<-exp(-7.69002); a
 
 # Modelo potencial: volumen=0.000457369*diametro^2.06162
 # Graficar el modelo potencial
