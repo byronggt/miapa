@@ -31,7 +31,7 @@ summary(reg)
 
 # Línea de regresión
 plot(log(diametro),log(volumen))
-abline(reg, pred = volumen, col="red", lwd=2)
+abline(reg, pred = volumen, col="red", lwd=3)
 
 
 # Revisión de los supuestos
@@ -48,7 +48,7 @@ a<-exp(-7.69002); a
 # Modelo potencial: volumen=0.000457369*diametro^2.06162
 # Graficar el modelo potencial
 plot(diametro,volumen)
-curve(0.000457369*x^2.06162, add=TRUE, col="blue", lwd=2)
+curve(0.000457369*x^2.06162, add=TRUE, col="blue", lwd=3)
 
 # Continuación del modelo lineal...
 # Calcular un modelo con dos entradas de datos para una variable independiente
