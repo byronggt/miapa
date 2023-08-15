@@ -29,13 +29,15 @@ plot(log(diametro),log(volumen))
 reg<-lm(log(volumen)~log(diametro))
 summary(reg)
 
+# Línea de regresión
+plot(log(diametro),log(volumen))
+abline(reg, pred = volumen, col="red", lwd=2)
+
+
 # Revisión de los supuestos
 plot(reg,which=1:2)
 shapiro.test(reg$residuals)
 
-# Línea de regresión
-plot(log(diametro),log(volumen))
-abline(reg, pred = volumen, col="red", lwd=2)
 
 # Convertir el modelo lineal transformado
 # a un modelo de potencia de la forma volumen=a*diametro^b
