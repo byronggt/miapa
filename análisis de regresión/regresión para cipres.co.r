@@ -12,6 +12,7 @@ plot(altura,volumen)
 regsimple<-lm(volumen~diametro)
 summary(regsimple)
 
+head(cipres.co)
 cipres.co$pred<-regsimple$fitted.values
 cipres.co$res<-regsimple$residuals
 head(cipres.co)
