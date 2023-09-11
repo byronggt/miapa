@@ -51,10 +51,11 @@ names(grupo)
 # Análisis para cada localidad (Ejemplo para el Jícaro)
 jic <- subset(grupo, Loc=="Jicaro")
 
-aov.jic<- lm(Rend~Bloq+Lin) # modelo de efectos fijos
+aov.jic<- lm(Rend~Bloq+Lin, data=jic) # modelo de efectos fijos
 summary(aov.jic)
 plot(aov.jic,1)
 plot(aov.jic,2)
+anova(aov.jic)
 
 # Análisis para todas las localidades de una sola vez
 das <- split(grupo, grupo$Loc) # Genera una lista para cada localidad
