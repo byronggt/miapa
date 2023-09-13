@@ -18,15 +18,18 @@ if(!require(readxl)){install.packages("readxl")}
 # Importar la tabla de datos "frijol.xslx"
 grupo<-read_excel("frijol.xlsx")
 head(grupo)
+tail(grupo)
 
 grupo$Loc<- as.factor(grupo$Loc)
 grupo$Lin<- as.factor(grupo$Lin)
 grupo$Bloq<-as.factor(grupo$Bloq)
 grupo$Loc_Bloq<-as.factor(grupo$Loc_Bloq)
 
+str(grupo)
 attach(grupo)
 
-# Gráfico da interacción
+# Gráfico de interacción
+windows(10,10)
 interaction.plot(Loc,Lin,Rend, fixed=T, xlab="Localidades", ylab="Rendimento") 
 
 # Análisis exploratorio
@@ -112,7 +115,7 @@ mc13<-lme(Rend~1+Loc+Lin+Loc:Lin
           ,keep.data=FALSE)
 summary(mc13)
 anova(mc13) # Significancia en la interacción de localidad*línea
-plot(Loc,mc13$residuals) # Atención
+#plot(Loc,mc13$residuals) # Atención
 plot(Lin,mc13$residuals)
 plot(mc13) # Atención
 qqPlot(mc13$residuals)
