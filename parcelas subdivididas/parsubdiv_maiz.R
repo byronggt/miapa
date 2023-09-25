@@ -43,5 +43,7 @@ model1<-aov(rend~bloque+lab*var*fer + Error(bloque/lab/var),data=psdv)
 model1
 
 # Revisión del supuesto de homogeneidad de varianzas (Pendiente)
-leveneTest(rend ~ lab*var*fer, data = psdv)
+
+names(model1)
+leveneTest(rend~ lab*var*fer, data = psdv)
 bartlett.test(rend~interaction(lab,var,fer), data = psdv)
