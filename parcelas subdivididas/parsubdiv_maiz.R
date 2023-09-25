@@ -8,7 +8,9 @@ if(!require(car)){install.packages("car")}
 if(!require(lattice)){install.packages("lattice")}
 if(!require(tidyverse)){install.packages("tidyverse")}
 if(!require(performance)){install.packages("performance")}
+if(!require(rstatix)){install.packages("rstatix")}
 if(!require(agricolae)){install.packages("agricolae")}
+if(!require(ggpubr)){install.packages("ggpubr")}
 if(!require(readxl)){install.packages("readxl")}
 
 # Experimento en bloques completos al azar con
@@ -39,11 +41,13 @@ plot(s2,xlab="Variedades de maíz", variation = "IQR")
 plot(s3,xlab="Tipos de fertilizante", variation = "IQR")
 
 # Análisis de varianza con AOV
-model1<-aov(rend~bloque+lab*var*fer + Error(bloque/lab/var),data=psdv)
+model1<-aov(rend~bloque+lab*var*fer + Error(bloque/lab/var), psdv)
 model1
 
 # Revisión del supuesto de homogeneidad de varianzas (Pendiente)
 
-names(model1)
-leveneTest(rend~ lab*var*fer, data = psdv)
-bartlett.test(rend~interaction(lab,var,fer), data = psdv)
+psdv %>% levene_test(rend~ lab*var*fer)
+bartlett.test(rend~interaction(lab,var,fer), psdv)
+leveneTest( rend ~ lab*var*fer, psdv)
+
+
