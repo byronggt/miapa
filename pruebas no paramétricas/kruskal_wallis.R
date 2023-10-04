@@ -39,7 +39,9 @@ ggbetweenstats(
 # También este vínculo para ampliar sobre las pruebas post hoc
 # https://statsandr.com/blog/anova-in-r/#post-hoc-test 
 # https://statsandr.com/blog/kruskal-wallis-test-nonparametric-version-anova/ 
+
 # Prueba post hoc de Dunnet para Kruskal-Wallis
+# con propósitos ilustrativos
 
 # Calcular la mediana de los grupos
 library(dplyr)
@@ -47,9 +49,9 @@ median.p<-papa1 %>%
   group_by(producto) %>%
   summarise(median.pr = median(aspecto))
 median.p
+
 # Ordenar en forma descendente
 arrange(median.p, desc(median.pr))
-
 
 # Ordenar los grupos
 papa1$producto = factor(papa1$producto,
@@ -62,14 +64,18 @@ papa1$producto = factor(papa1$producto,
 levels(papa1$producto)
 
 if(!require(FSA)){install.packages("FSA")}
+
 DT <- dunnTest(aspecto ~ producto,
                data=papa1,
                method="bh")      # Ajusta p-valores para múltiples comparaciones
+
 # Ver ?dunnTest para más opciones
 DT
+
 ### Vista compacta de letras
 PT = DT$res
 PT
+
 if(!require(rcompanion)){install.packages("rcompanion")}
 cldList(P.adj ~ Comparison,
         data = PT,
@@ -85,38 +91,40 @@ cldList(p.value ~ Comparison, data=DTT)
 
 # Graficar las medianas e intervalos de confianza
 # Solo para efectos ilustrativos de código
-# porque el error ocurre al ver hay demasiados valores de 2
-Sum = groupwiseMedian(aspecto ~ producto,
-                      data       = papa1,
-                      conf       = 0.95,
-                      R          = 5000,
-                      percentile = TRUE,
-                      bca        = FALSE,
-                      digits     = 4)
+# porque el error ocurre al observar
+# que hay demasiados valores de 2
 
-Sum
-X     = 1:3
-Y     = Sum$Percentile.upper + 0.2
-Label = c("producto1", "producto2", "producto3", "producto4",
-          "producto5", "producto6")
+#Sum = groupwiseMedian(aspecto ~ producto,
+#                      data       = papa1,
+#                      conf       = 0.95,
+#                      R          = 5000,
+#                      percentile = TRUE,
+#                      bca        = FALSE,
+#                      digits     = 4)
 
-if(!require(ggplot2)){install.packages("ggplot2")}
+#Sum
+#X     = 1:3
+#Y     = Sum$Percentile.upper + 0.2
+#Label = c("producto1", "producto2", "producto3", "producto4",
+#          "producto5", "producto6")
 
-ggplot(Sum,                ### The data frame to use.
-       aes(x = producto,
-           y = Median)) +
-  geom_errorbar(aes(ymin = Percentile.lower,
-                    ymax = Percentile.upper),
-                width = 0.05,
-                size  = 0.5) +
-  geom_point(shape = 15,
-             size  = 4) +
-  theme_bw() +
-  theme(axis.title   = element_text(face  = "bold")) +
+#if(!require(ggplot2)){install.packages("ggplot2")}
+
+#ggplot(Sum,                ### The data frame to use.
+#       aes(x = producto,
+#           y = Median)) +
+#  geom_errorbar(aes(ymin = Percentile.lower,
+#                    ymax = Percentile.upper),
+#                width = 0.05,
+#                size  = 0.5) +
+#  geom_point(shape = 15,
+#             size  = 4) +
+#  theme_bw() +
+#  theme(axis.title   = element_text(face  = "bold")) +
   
-  ylab("Mediana de la calificación de aspecto del tubérculo") +
+#  ylab("Mediana de la calificación de aspecto del tubérculo") +
   
-  annotate("text",
-           x = X,
-           y = Y,
-           label = Label)
+#  annotate("text",
+#           x = X,
+#           y = Y,
+#           label = Label)
