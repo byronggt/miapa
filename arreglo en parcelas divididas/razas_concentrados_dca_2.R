@@ -60,6 +60,10 @@ plot(resp1,2)
 shapiro.test(resp1$residuals)
 
 # Prueba de homogeneidad de varianzas
+residuos<-residuals(resp1)
+check_model(resp1)
+check_normality(resp1)
+bartlett.test(residuos~interaction(Raz,Con),resp1)
 
 # Razas, colocadas en las parcelas grandes
 bartlett.test(resp1$res, Raz)
