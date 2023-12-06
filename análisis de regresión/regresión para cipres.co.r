@@ -53,7 +53,7 @@ curve(0.000457369*x^2.06162, add=TRUE, col="blue", lwd=3)
 
 # Continuación del modelo lineal...
 # Calcular un modelo con dos entradas de datos para una variable independiente
-# Ln(volumen)= a + b*Ln(D2*H) + e
+# Log(volumen)= a + b*Log(D2*H) + e
 reg1<-lm(log(volumen)~log(diametro^2*altura))
 summary(reg1)
 
