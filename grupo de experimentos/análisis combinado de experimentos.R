@@ -69,8 +69,8 @@ lapply(das, function(loc) with(loc, tapply(Rend, list(Bloq,Lin), identity)))
 
 m01 <- lapply(das, FUN=aov, formula=Rend~Bloq+Lin) # ajusta para todas las localidades
 lapply(m01, summary)               # Muestra los andevas
-glrs <- sapply(m01, df.residual)   # Grados de libertad
-qmrs <- sapply(m01, deviance)/glrs # Cuadrados medios
+glrs <- sapply(m01, df.residual); glrs   # Grados de libertad
+qmrs <- sapply(m01, deviance)/glrs ; qmrs # Cuadrados medios
 
 # Ajuste para el análisis de los residuos (modelo reducido)
 
