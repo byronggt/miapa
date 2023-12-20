@@ -1,1 +1,0 @@
-# http://cete.fausac.gt
