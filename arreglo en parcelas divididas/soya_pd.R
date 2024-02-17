@@ -17,7 +17,7 @@ interaction.plot(esurcos,dsem,rend, fixed=F, xlab="Distancia entre surcos", ylab
 # Análisis de varianza
 mod1<-splitplot(pdsoya[4],bloque,esurcos,dsem,3); mod1
 
-#Verificación de supuestos del modelo matemático-estadístico (Pendiente se revisión)
+#Verificación de supuestos del modelo matemático-estadístico (Pendiente de revisión)
 resg1<-aov(rend~bloque+esurcos+dsem+esurcos*dsem+Error(bloque/esurcos))
 
 summary(resg1)
