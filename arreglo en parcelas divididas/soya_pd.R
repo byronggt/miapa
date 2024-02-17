@@ -17,14 +17,18 @@ interaction.plot(esurcos,dsem,rend, fixed=F, xlab="Distancia entre surcos", ylab
 # Análisis de varianza
 mod1<-splitplot(pdsoya[4],bloque,esurcos,dsem,3); mod1
 
-#Verificación de supuestos del modelo matemático-estadístico (Pendiente de revisión)
-resg1<-aov(rend~bloque+esurcos+dsem+esurcos*dsem+Error(bloque/esurcos))
+# Verificación de supuestos del modelo matemático-estadístico (Revisar)
+pdsoya<- pdsoya %>% 
+  mutate(across(c(esurcos, dsem, bloque), .fns = factor))
 
-summary(resg1)
-plot(resg1,1)
-plot(resg1,2)
-plot(resg1,5)
-shapiro.test(resg1$res)
+mod2<-aov(rend~bloque+esurcos*dsem+Error(bloque:esurcos), data = pdsoya)
+
+summary(mod2)
+dev.off()
+plot(mod2,1)
+plot(mod2,2)
+plot(mod2,5)
+shapiro.test(mod2$res)
 
 bartlett.test(resg1$res, esurcos)
 bartlett.test(resg1$res, dsem)
