@@ -15,9 +15,11 @@ if(!require(plotrix)){install.packages("plotrix")}
 if(!require(ellipse)){install.packages("ellipse")}
 if(!require(RcmdrMisc)){install.packages("RcmdrMisc")}
 if(!require(readxl)){install.packages("readxl")}
+if(!require(here)){install.packages("here")}
 
 # Lectura de la tabla de datos de salinidad
-salinidad<-read_excel("salinidad.xlsx")
+ruta<-here("data","salinidad.xlsx")
+salinidad<-read_excel(ruta)
 plot(salinidad)
 head(salinidad)
 tail(salinidad)
