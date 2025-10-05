@@ -1,6 +1,5 @@
 # Dr. Byron González
-# Dr. Ezequiel López
-# http://cete.fausac.gt
+# http://byrong.cc
 
 # Colocar en memoria las bibliotecas a emplear
 
@@ -12,6 +11,8 @@ if(!require(rstatix)){install.packages("rstatix")}
 if(!require(agricolae)){install.packages("agricolae")}
 if(!require(ggpubr)){install.packages("ggpubr")}
 if(!require(readxl)){install.packages("readxl")}
+if(!require(AgroR)){install.packages("AgroR")}
+
 
 # Experimento en bloques completos al azar con
 # arreglo en parcelas subdidividas en maíz
@@ -46,6 +47,29 @@ model1
 
 # Revisión del supuesto de homogeneidad de varianzas (Pendiente)
 
+resultado <- split3D(
+  bloco = psdv$bloque,
+  f1 = psdv$lab,     # factor principal (lab)
+  f2 = psdv$var,     # subparcela (var)
+  f3 = psdv$fer,     # sub-subparcela (fer)
+  resp = psdv$rend,  # variable respuesta
+  quali = c(TRUE, TRUE, TRUE),   # todos los factores cualitativos
+  mcomp = "tukey",               # método de comparación de medias
+  fac.names = c("Labranza", "Variedad", "Fertilizante"),
+  sigF = 0.05,
+  sigT = 0.05
+)
+
+summary(resultado)
+
+
+
+
+#========
+
+with(psdv,PSUBSUBDBC(lab,var,fer,bloque,rend))
+  
+    
 psdv %>% levene_test(rend~ lab*var*fer)
 bartlett.test(rend~interaction(lab,var,fer), psdv)
 leveneTest( rend ~ lab*var*fer, psdv)
