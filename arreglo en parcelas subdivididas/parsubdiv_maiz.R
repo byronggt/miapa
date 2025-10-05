@@ -73,3 +73,6 @@ modelo_aov_ssp <- aov(
 )
 
 summary(modelo_aov_ssp)
+
+
+
