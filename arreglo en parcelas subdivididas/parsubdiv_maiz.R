@@ -47,27 +47,17 @@ model1
 
 # Revisión del supuesto de homogeneidad de varianzas (Pendiente)
 
-resultado <- split3D(
-  bloco = psdv$bloque,
-  f1 = psdv$lab,     # factor principal (lab)
-  f2 = psdv$var,     # subparcela (var)
-  f3 = psdv$fer,     # sub-subparcela (fer)
-  resp = psdv$rend,  # variable respuesta
-  quali = c(TRUE, TRUE, TRUE),   # todos los factores cualitativos
-  mcomp = "tukey",               # método de comparación de medias
-  fac.names = c("Labranza", "Variedad", "Fertilizante"),
-  sigF = 0.05,
-  sigT = 0.05
-)
 
-summary(resultado)
-
-
-
-
+  bloco = psdv$bloque
+  f1 = psdv$lab     # factor principal (lab)
+  f2 = psdv$var     # subparcela (var)
+  f3 = psdv$fer     # sub-subparcela (fer)
+  resp = psdv$rend  # variable respuesta
+  
+  
 #========
 
-with(psdv,PSUBSUBDBC(lab,var,fer,bloque,rend))
+with(psdv,PSUBSUBDBC(f1,f2,f3,bloco,resp,mcomp = "tukey"))
   
     
 psdv %>% levene_test(rend~ lab*var*fer)
@@ -75,3 +65,11 @@ bartlett.test(rend~interaction(lab,var,fer), psdv)
 leveneTest( rend ~ lab*var*fer, psdv)
 
 
+# =========== (revisar)
+modelo_aov_ssp <- aov(
+  rend ~ lab * var * fer + # Efectos principales y todas las interacciones
+    Error(bloque/lab/var),    # Definición jerárquica de los errores (WP, SP, SSP)
+  data = psdv
+)
+
+summary(modelo_aov_ssp)
