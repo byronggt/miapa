@@ -41,38 +41,8 @@ plot(s1,xlab="Métodos de labranza",las=1,variation = "IQR")
 plot(s2,xlab="Variedades de maíz", variation = "IQR")
 plot(s3,xlab="Tipos de fertilizante", variation = "IQR")
 
-# Análisis de varianza con AOV
-model1<-aov(rend~bloque+lab*var*fer + Error(bloque/lab/var), psdv)
-model1
 
-# Revisión del supuesto de homogeneidad de varianzas (Pendiente)
-
-
-  bloco = psdv$bloque
-  f1 = psdv$lab     # factor principal (lab)
-  f2 = psdv$var     # subparcela (var)
-  f3 = psdv$fer     # sub-subparcela (fer)
-  resp = psdv$rend  # variable respuesta
-  
-  
+# Revisión de los supuestos del Andeva
 #========
 
-with(psdv,PSUBSUBDBC(f1,f2,f3,bloco,resp,mcomp = "tukey"))
-  
-    
-psdv %>% levene_test(rend~ lab*var*fer)
-bartlett.test(rend~interaction(lab,var,fer), psdv)
-leveneTest( rend ~ lab*var*fer, psdv)
-
-
-# =========== (revisar)
-modelo_aov_ssp <- aov(
-  rend ~ lab * var * fer + # Efectos principales y todas las interacciones
-    Error(bloque/lab/var),    # Definición jerárquica de los errores (WP, SP, SSP)
-  data = psdv
-)
-
-summary(modelo_aov_ssp)
-
-
-
+with(psdv,PSUBSUBDBC(lab,var,fer,bloque,rend,mcomp = "tukey"))
