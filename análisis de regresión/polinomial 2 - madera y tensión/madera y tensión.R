@@ -1,7 +1,6 @@
 # Ajuste de modelo polinomial de grado 2 para la madera y tensión
 # Dr. Byron González
-# Dr. Ezequiel López
-# http://cete.fausac.gt
+# http://byrong.cc
 
 if(!require(performance)){install.packages("performance")}
 if(!require(tidyverse)){install.packages("tidyverse")}

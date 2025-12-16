@@ -1,6 +1,5 @@
 # Dr. Byron González
-# Dr. Ezequiel López
-# http://cete.fausac.gt
+# http://byrong.cc
 
 # Con información del texto de http://statforbiology.com
 # de Andrea Onofri and Dario Sacco 

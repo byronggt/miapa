@@ -1,6 +1,5 @@
 # Dr. Byron González
-# Dr. Ezequiel López
-# http://cete.fausac.gt
+# http://byrong.cc 
 
 # Revise los siguientes vídeos:
 # https://www.youtube.com/watch?v=h1ZWj6TbuwU
@@ -17,6 +16,8 @@ if(!require(agricolae)){install.packages("agricolae")}
 if(!require(lsmeans)){install.packages("emmeans")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(AgroR)){install.packages("AgroR")}
+
 
 franjas<- fread("https://archive.org/download/byrong_Maiz/Maiz.txt",header=T, sep="\t", dec=",")
 head(franjas)
@@ -59,3 +60,6 @@ mod1$residuals
 FactorA<-HSD.test(resp1,nitr,fran.anova$gl.a,fran.anova$Ea);FactorA
 FactorB<-HSD.test(resp1,riego,fran.anova$gl.b,fran.anova$Eb);FactorB
 FactorAB<-HSD.test(resp1,riego:nitr,fran.anova$gl.c,fran.anova$Ec);FactorAB
+
+# Andeva con AgroR
+with(franjas, STRIPLOT(nitr, riego, bloque, resp1))

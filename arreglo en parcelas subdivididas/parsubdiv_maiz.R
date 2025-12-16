@@ -1,6 +1,5 @@
 # Dr. Byron González
-# Dr. Ezequiel López
-# http://cete.fausac.gt
+# http://byrong.cc
 
 # Colocar en memoria las bibliotecas a emplear
 
@@ -12,6 +11,8 @@ if(!require(rstatix)){install.packages("rstatix")}
 if(!require(agricolae)){install.packages("agricolae")}
 if(!require(ggpubr)){install.packages("ggpubr")}
 if(!require(readxl)){install.packages("readxl")}
+if(!require(AgroR)){install.packages("AgroR")}
+
 
 # Experimento en bloques completos al azar con
 # arreglo en parcelas subdidividas en maíz
@@ -40,14 +41,8 @@ plot(s1,xlab="Métodos de labranza",las=1,variation = "IQR")
 plot(s2,xlab="Variedades de maíz", variation = "IQR")
 plot(s3,xlab="Tipos de fertilizante", variation = "IQR")
 
-# Análisis de varianza con AOV
-model1<-aov(rend~bloque+lab*var*fer + Error(bloque/lab/var), psdv)
-model1
 
-# Revisión del supuesto de homogeneidad de varianzas (Pendiente)
+# Revisión de los supuestos del Andeva
+#========
 
-psdv %>% levene_test(rend~ lab*var*fer)
-bartlett.test(rend~interaction(lab,var,fer), psdv)
-leveneTest( rend ~ lab*var*fer, psdv)
-
-
+with(psdv,PSUBSUBDBC(lab,var,fer,bloque,rend,mcomp = "tukey"))
