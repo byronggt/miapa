@@ -2,7 +2,7 @@
 # http://byrong.cc
 
 if(!require(readxl)){install.packages("readxl")}
-if(!require(stat)){install.packages("stat")}
+if(!require(stats)){install.packages("stats")}
 if(!require(ggstatsplot)){install.packages("ggstatsplot")}
 
 # Importar la tabla "epapa" ------
