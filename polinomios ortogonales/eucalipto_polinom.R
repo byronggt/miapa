@@ -22,6 +22,7 @@ summary(mod2)
 # Construcción del modelo de grado 2
 mod3<-lm(altura ~ dosisk + I(dosisk^2))
 anova(mod3)
+summary(mod3)
 
 # El término lineal del modelo no es satisfactorio, se requiere eliminarlo
 mod4<-lm(altura~-1+dosisk + I(dosisk^2), data=euc)
