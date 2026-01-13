@@ -39,7 +39,7 @@ if(!require(car)){install.packages("car")}
 
 lar1=Lar_h+1
 summary(powerTransform(lar1))
-nem$pot_lar1=lar1^0.1307
+nem$pot_lar1=(lar1^0.1307-1)/0.1307
 colnames(nem)
 mod1<-lm(nem$pot_lar1~trat)
 anova(mod1, test=F)
