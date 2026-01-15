@@ -69,3 +69,6 @@ if(!require(flextable)){install.packages("flextable")}
 tablaT <- flextable(outHSD$groups)
 tablaT <- set_caption(tablaT, "Prueba post Andeva bajo el criterio de Tukey")
 tablaT
+
+if(!require(AgroR)){install.packages("AgroR")} 
+with(nem,DIC(trat,pot_lar1,mcomp = "sk"))
