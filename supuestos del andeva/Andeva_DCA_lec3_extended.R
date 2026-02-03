@@ -72,3 +72,5 @@ tablaT
 
 if(!require(AgroR)){install.packages("AgroR")} 
 with(nem,DIC(trat,pot_lar1,mcomp = "sk"))
+
+--------------
