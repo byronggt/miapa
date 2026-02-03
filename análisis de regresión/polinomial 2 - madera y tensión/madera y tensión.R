@@ -14,14 +14,20 @@ madera<-read_excel("madera.y.tension.xlsx")
 
 mad1<- lm(tension~madera, data=madera)
 summary(mad1)
-check_model(mad1)
+plot(mad1,which=1:2)
+shapiro.test(mad1$residuals)
+
 
 # Ajuste de un modelo polinomial de grado 2
 mad2<- lm(tension~madera+I(madera^2), data=madera)
 summary(mad2)
-check_model(mad2)
+plot(mad2,which=1:2)
+shapiro.test(mad2$residuals)
+
 
 # Note que debe eliminarse el intercepto
 mad3<- lm(tension~-1+madera+I(madera^2), data=madera)
 summary(mad3)
-check_model(mad3)
+plot(mad3,which=1:2)
+shapiro.test(mad3$residuals)
+AIC(mad2,mad3)
