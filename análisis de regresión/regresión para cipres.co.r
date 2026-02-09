@@ -1,5 +1,5 @@
 # Dr. Byron González
-# http://byrong.cc
+# http://byrong.cc+
 
 if(!require(readxl)){install.packages("readxl")}
 cipres.co<-read_excel("cipres.co.xlsx")
@@ -73,21 +73,23 @@ summary(reg2)
 plot(reg2,which=1:2)
 shapiro.test(reg2$residuals)
 
-# REVISAR si el modelo polinómico de grado 1 con log resulta ser adecuado
-# O bien el modelo potencial
 # Ajustar un modelo de regresión polinomial de grado 3 entre volumen y diámetro
 reg3<-lm(log(volumen)~log(diametro)+I(log(diametro)^2)+I(log(diametro)^3))
 summary(reg3)
 plot(reg3,which=1:2)
-
-# Revision de los supuestos
 shapiro.test(reg3$residuals)
+AIC(reg2,reg3)
+
+# Es mejor el modelo polinomial 3 con el menor AIC
+
+# Diagrama de dispersión para reg3
 plot(diametro,volumen, log="xy")
 D <- 10^seq(par("usr")[1],par("usr")[2],length=7)
 lines(D,exp(predict(reg3,newdata=data.frame(diametro=D))), col="red", lwd=2)
 
 # resulta necesario mejorar el ajuste...
-# Usar el principio de la parsimonia. Elegir el modelo con menor AIC y con el menor
+# Usar el principio de la parsimonia si es posible
+# Elegir el modelo con menor AIC y con el menor
 # número de parámetros (navaja de Occam)
 # Uso del modelo para predecir el intervalo de confianza
 # Caso del modelo lineal simple para el árbol promedio de 20.8 cm
