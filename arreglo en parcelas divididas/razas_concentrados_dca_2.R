@@ -6,6 +6,7 @@ if(!require(agricolae)){install.packages("agricolae")}
 if(!require(lsmeans)){install.packages("lsmeans")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(performance)){install.packages("performance")}
 
 # Eliminar objetos antiguos de la memoria
 rm(list=ls())
@@ -59,10 +60,11 @@ plot(resp1,2)
 shapiro.test(resp1$residuals)
 
 # Prueba de homogeneidad de varianzas
-residuos<-residuals(resp1)
+residuos<-residuals(resp1); residuos
+win.graph(10,10)
 check_model(resp1)
 check_normality(resp1)
-bartlett.test(residuos~interaction(Raz,Con),resp1)
+plot(resp1,1)
 
 # Razas, colocadas en las parcelas grandes
 bartlett.test(resp1$res, Raz)

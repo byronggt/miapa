@@ -26,7 +26,6 @@ mod2<-aov(rend~bloque+esurcos*dsem+bloque:esurcos, data = pdsoya)
 summary(mod2)
 
 plot(mod2,1)
-<<<<<<< HEAD
 plot(mod2,2)
 
 
@@ -41,6 +40,5 @@ summary(sk_dsem)
 
 sk_inter <- SK(mod2, which = "esurcos:dsem")
 summary(sk_inter)
-=======
+
 plot(mod2,2)
->>>>>>> 084a5eae0aca40f9413824418c67f765f47129c6
