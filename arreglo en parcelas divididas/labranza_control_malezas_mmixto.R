@@ -3,6 +3,8 @@
 
 # Con información del texto de http://statforbiology.com
 # de Andrea Onofri and Dario Sacco 
+# https://www.statforbiology.com/2021/stat_lmm_splitplottransition/
+
 
 rm(list=ls())
 
