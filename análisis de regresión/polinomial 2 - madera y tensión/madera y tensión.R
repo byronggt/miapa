@@ -9,8 +9,8 @@ if(!require(car)) install.packages("car")
 
 # Importar el archivo de datos
 madera<-read_excel("madera.y.tension.xlsx")
-
-#Ajuste de un modelo lineal
+attach(madera)
+plot(madera,tension)
 # Note la falta de ajuste
 
 mad1<- lm(tension~madera, data=madera)

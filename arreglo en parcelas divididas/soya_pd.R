@@ -27,3 +27,18 @@ summary(mod2)
 
 plot(mod2,1)
 plot(mod2,2)
+
+
+if(!require(ScottKnott)){install.packages("ScottKnott")}
+library(ScottKnott)
+
+sk_esurcos <- SK(mod2, which = "esurcos", error = "bloque:esurcos")
+summary(sk_esurcos)
+
+sk_dsem <- SK(mod2, which = "dsem")
+summary(sk_dsem)
+
+sk_inter <- SK(mod2, which = "esurcos:dsem")
+summary(sk_inter)
+
+plot(mod2,2)
