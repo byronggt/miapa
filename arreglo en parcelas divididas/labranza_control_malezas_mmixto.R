@@ -3,6 +3,12 @@
 
 # Con información del texto de http://statforbiology.com
 # de Andrea Onofri and Dario Sacco 
+# https://www.statforbiology.com/2021/stat_lmm_splitplottransition/
+# Tillage = Métodos de labranza:
+# arado superficial, arado profundo, labranza mínima
+# WeedControl = Método de control de maleza:
+# total y parcial
+# Método de labranza en la parcela grande
 
 rm(list=ls())
 
