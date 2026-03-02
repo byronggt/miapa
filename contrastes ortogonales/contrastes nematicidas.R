@@ -20,6 +20,13 @@ nema$nematicida <- as.factor(nema$nematicida)
 modelo <- aov(nemvivos ~ nematicida + rep, data = nema)
 summary(modelo)
 
+# Revisión de los supuestos del modelo
+
+plot(modelo,1)
+plot(modelo,2)
+shapiro.test(modelo$residuals)
+
+
 # Crear matriz de contrastes
 contrastes <- matrix(c(
   -5, 1, 1, 1, 1, 1,     # C1
