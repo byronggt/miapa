@@ -24,7 +24,7 @@ interaction.plot(alimentacion, ambiente, peso, fixed=T, xlab="Alimentación", yl
 
 # Análisis de varianza en arreglo combinatorio
 
-mod1<-aov(peso~raza*ambiente*alimentacion)
+mod1<-aov(peso~raza*ambiente*alimentacion, data = alpacas)
 anova(mod1)
 
 # Revisión de los supuestos del anova
@@ -35,4 +35,12 @@ shapiro.test(mod1$residuals)
 # Prueba de media para la interacción raza*ambiente
 Tukey<-HSD.test(peso, raza:ambiente, DFerror = 60, MSerror = 0.4369);Tukey
 
+# Crear una nueva columna que combine ambos factores
+alpacas$raza_amb <- interaction(alpacas$raza, alpacas$ambiente)
 
+# Ajustar un modelo simple con esa nueva variable
+mod_simple <- aov(peso ~ raza_amb, data = alpacas)
+
+# Ejecutar Scott-Knott sobre esa variable
+sk_final <- SK(mod_simple, which = "raza_amb")
+summary(sk_final)
