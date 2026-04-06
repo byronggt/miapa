@@ -26,6 +26,9 @@ mod3<-lm(altura ~ dosisk + I(dosisk^2))
 anova(mod3)
 summary(mod3)
 
+# El modelo cuadrático ajustado es:
+# altura = 79.016667 + 2.562667 (dosisk) - 0.028056 (dosisk^2)
+
 # Cuando el término lineal del modelo no es satisfactorio
 # se requiere eliminarlo. Solo es un ejemplo
 # porque en este caso no es necesario removerlo
@@ -48,3 +51,5 @@ plot(fitted(mod3),residuals(mod3), xlab="Valores predichos",ylab=
 # Revisión del VIF para el modelo polinomial de grado 2
 vif_3 <- vif(mod3); vif_3
 
+# Revisión de AIC 
+AIC(mod2,mod3)
