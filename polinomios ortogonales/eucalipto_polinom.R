@@ -27,7 +27,8 @@ anova(mod3)
 summary(mod3)
 
 # Cuando el término lineal del modelo no es satisfactorio
-# se requiere eliminarlo
+# se requiere eliminarlo. Solo es un ejemplo
+# porque en este caso no es necesario removerlo
 mod4<-lm(altura~-1+dosisk + I(dosisk^2), data=euc)
 anova(mod4)
 
