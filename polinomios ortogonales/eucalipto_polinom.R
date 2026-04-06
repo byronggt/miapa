@@ -51,5 +51,5 @@ plot(fitted(mod3),residuals(mod3), xlab="Valores predichos",ylab=
 # Revisión del VIF para el modelo polinomial de grado 2
 vif_3 <- vif(mod3); vif_3
 
-# Revisión de AIC 
+# Revisión de AIC para los modelos de grado 3 y grado 2
 AIC(mod2,mod3)
