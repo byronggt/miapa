@@ -4,8 +4,10 @@
 # Lectura de archivos de Excel
 
 if(!require(readxl)){install.packages("readxl")} 
+if(!require(here)){install.packages("here")} 
 
-nem<-read_excel("nem_lec3.xlsx")
+here::here()
+nem<-read_excel(here("data","nem_lec3.xlsx"))
 print(nem)
 attach(nem)
 
@@ -22,7 +24,10 @@ anova(mod, test=F)
 
 if(!require(performance)){install.packages("performance")}
 
+windows()
 par(mfrow = c(2,2))
+summary(mod)
+plot(mod)
 plot(mod)
 check_normality(mod)
 
@@ -48,6 +53,7 @@ anova(mod1, test=F)
 # y normalidad
 # Es necesario contar con library(performance) instalada
 
+windows()
 par(mfrow = c(2,2))
 plot(mod1)
 check_normality(mod1)

@@ -1,7 +1,9 @@
 # Dr. Byron González
 # http://byrong.cc
 
+if(!require(car)){install.packages("car")}
 if(!require(readxl)){install.packages("readxl")}
+
 
 euc<-read_excel("polinomioseu.xlsx")
 attach(euc)
@@ -24,20 +26,24 @@ mod3<-lm(altura ~ dosisk + I(dosisk^2))
 anova(mod3)
 summary(mod3)
 
-# El término lineal del modelo no es satisfactorio, se requiere eliminarlo
+# Cuando el término lineal del modelo no es satisfactorio
+# se requiere eliminarlo
 mod4<-lm(altura~-1+dosisk + I(dosisk^2), data=euc)
 anova(mod4)
 
 # Gráfico de dispersión
 plot(dosisk,altura,col="blue", xlab="Dosis de potasio (ppm)",ylab="Altura de planta (cm)", ylim = c(0, 180), main="Gráfico de dispersión")
 d<-seq(0,100,1)
-predicted.intervals <- predict(mod4,data.frame(dosisk=d),interval="confidence",level=0.95)         
+predicted.intervals <- predict(mod3,data.frame(dosisk=d),interval="confidence",level=0.95)         
 lines(d,predicted.intervals[,1],col='green',lwd=3)
 lines(d,predicted.intervals[,2],col='black',lwd=1)
 lines(d,predicted.intervals[,3],col='black',lwd=1)
 title(sub="Figura 1. Curva ajustada y valores observados")
 
 # Revisión del ajuste del modelo
-plot(fitted(mod4),residuals(mod4), xlab="Valores predichos",ylab=
+plot(fitted(mod3),residuals(mod3), xlab="Valores predichos",ylab=
                               "Residuos")
+
+# Revisión del VIF para el modelo polinomial de grado 2
+vif_3 <- vif(mod3); vif_3
 
