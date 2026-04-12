@@ -17,8 +17,10 @@ if(!require(readxl)){install.packages("readxl")}
 if(!require(here)){install.packages("here")}
 
 # Lectura de la tabla de datos de salinidad
+
 ruta<-here("data","salinidad.xlsx")
 salinidad<-read_excel(ruta)
+windows(10,10)
 plot(salinidad)
 head(salinidad)
 tail(salinidad)
@@ -26,6 +28,7 @@ tail(salinidad)
 cor(salinidad[,c("pH","CE","Ca2+","Mg2+","Na+","K+","SO4 2-","STD")], use="complete")
 rcorr.adjust(salinidad[,c("pH","CE","Ca2+","Mg2+","Na+","K+","SO4 2-","STD")], type="pearson", use="complete")
 
+windows(10,10)
 corrplot(cor(salinidad), method="circle")
 corrplot(cor(salinidad), method="ellipse")
 corrplot(cor(salinidad), method="number")
