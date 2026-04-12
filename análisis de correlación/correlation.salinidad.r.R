@@ -43,7 +43,8 @@ ggpairs(salinidad)
 
 # Lectura de la tabla de datos de "salinidad1.xlsx"
 
-df<-read_excel("salinidad1.xlsx")
+df<-read_excel("data/salinidad1.xlsx")
+df
 attach(df)
 
 ggplot(df, aes(x = Ca, y = Mg)) +
