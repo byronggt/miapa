@@ -5,7 +5,7 @@ if(!require(car)){install.packages("car")}
 if(!require(readxl)){install.packages("readxl")}
 
 
-euc<-read_excel("polinomioseu.xlsx")
+euc<-read_excel("data/polinomioseu.xlsx")
 attach(euc)
 head(euc)
 str(euc)
