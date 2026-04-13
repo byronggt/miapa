@@ -36,6 +36,7 @@ mod4<-lm(altura~-1+dosisk + I(dosisk^2), data=euc)
 anova(mod4)
 
 # Gráfico de dispersión
+windows(10,10)
 plot(dosisk,altura,col="blue", xlab="Dosis de potasio (ppm)",ylab="Altura de planta (cm)", ylim = c(0, 180), main="Gráfico de dispersión")
 d<-seq(0,100,1)
 predicted.intervals <- predict(mod3,data.frame(dosisk=d),interval="confidence",level=0.95)         
