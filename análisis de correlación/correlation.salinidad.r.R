@@ -3,6 +3,7 @@
 
 # Colocar en memoria las bibliotecas a necesitar
 
+
 if(!require(corrplot)){install.packages("corrplot")}
 if(!require(PerformanceAnalytics)){install.packages("PerformanceAnalytics")}
 if(!require(ggcorrplot)){install.packages("ggcorrplot")}
