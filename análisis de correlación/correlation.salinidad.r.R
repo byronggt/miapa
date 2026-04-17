@@ -4,18 +4,18 @@
 # Colocar en memoria las bibliotecas a necesitar
 
 
-if(!require(corrplot)){install.packages("corrplot")}
-if(!require(PerformanceAnalytics)){install.packages("PerformanceAnalytics")}
-if(!require(ggcorrplot)){install.packages("ggcorrplot")}
-if(!require(psych)){install.packages("psych")}
-if(!require(GGally)){install.packages("GGally")}
-if(!require(ggplot2)){install.packages("ggplot2")}
-if(!require(Hmisc)){install.packages("Hmisc")} 
-if(!require(plotrix)){install.packages("plotrix")}
-if(!require(ellipse)){install.packages("ellipse")}
-if(!require(RcmdrMisc)){install.packages("RcmdrMisc")}
-if(!require(readxl)){install.packages("readxl")}
-if(!require(here)){install.packages("here")}
+if(!require(corrplot)) {install.packages("corrplot")} 
+if(!require(PerformanceAnalytics)) {install.packages("PerformanceAnalytics")} 
+if(!require(ggcorrplot)) {install.packages("ggcorrplot")}
+if(!require(psych)) {install.packages("psych")}
+if(!require(GGally)) {install.packages("GGally")}
+if(!require(ggplot2)) {install.packages("ggplot2")}
+if(!require(Hmisc)) {install.packages("Hmisc")} 
+if(!require(plotrix)) {install.packages("plotrix")}
+if(!require(ellipse)) {install.packages("ellipse")}
+if(!require(RcmdrMisc)) {install.packages("RcmdrMisc")}
+if(!require(readxl)) {install.packages("readxl")}
+if(!require(here)) {install.packages("here")}
 
 # Lectura de la tabla de datos de salinidad
 
