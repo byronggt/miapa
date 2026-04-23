@@ -18,6 +18,7 @@ cipres.co$pred<-regsimple$fitted.values
 cipres.co$res<-regsimple$residuals
 head(cipres.co)
 
+win.graph(10,10)
 plot(diametro,volumen)
 abline(regsimple, fitted.values=volumen, col="blue", lwd=2)
 plot(regsimple,which=1:2)
