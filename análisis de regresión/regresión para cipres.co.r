@@ -2,7 +2,7 @@
 # http://byrong.cc+
 
 if(!require(readxl)){install.packages("readxl")}
-cipres.co<-read_excel("cipres.co.xlsx")
+cipres.co<-read_excel("data/cipres.co.xlsx")
 attach(cipres.co) 
 plot(diametro,volumen)
 plot(altura,volumen)
