@@ -4,7 +4,8 @@
 if(!require(readxl)){install.packages("readxl")}
 cipres.co<-read_excel("data/cipres.co.xlsx")
 head(cipres.co)
-attach(cipres.co) 
+attach(cipres.co)
+windows(10,10) 
 plot(diametro,volumen)
 plot(altura,volumen)
 
