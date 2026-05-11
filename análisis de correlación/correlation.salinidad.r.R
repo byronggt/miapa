@@ -3,6 +3,7 @@
 
 # Colocar en memoria las bibliotecas a necesitar
 
+# Colocar en memoria las bibliotecas a necesitar
 
 if(!require(corrplot)) {install.packages("corrplot")} 
 if(!require(PerformanceAnalytics)) {install.packages("PerformanceAnalytics")} 
@@ -16,6 +17,7 @@ if(!require(ellipse)) {install.packages("ellipse")}
 if(!require(RcmdrMisc)) {install.packages("RcmdrMisc")}
 if(!require(readxl)) {install.packages("readxl")}
 if(!require(here)) {install.packages("here")}
+
 
 # Lectura de la tabla de datos de salinidad
 
