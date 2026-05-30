@@ -3,8 +3,6 @@
 
 # Colocar en memoria las bibliotecas a necesitar
 
-# Colocar en memoria las bibliotecas a necesitar
-
 if(!require(corrplot)) {install.packages("corrplot")} 
 if(!require(PerformanceAnalytics)) {install.packages("PerformanceAnalytics")} 
 if(!require(ggcorrplot)) {install.packages("ggcorrplot")}
@@ -60,8 +58,8 @@ ggplot(df, aes(x =ce, y = Ca)) +
 
 # Emplear cor.test
 
-cor.test(Ca,Mg, method = "pearson")
-cor.test(ce,Ca, method = "pearson")
+cor.test(df$Ca,df$Mg, method = "pearson")
+cor.test(df$ce,df$Ca, method = "pearson")
 
 # matriz de correlación
 mcor<-cor(df); mcor
