@@ -26,8 +26,6 @@ if(!require(performance)){install.packages("performance")}
 
 windows()
 par(mfrow = c(2,2))
-summary(mod)
-plot(mod)
 plot(mod)
 check_normality(mod)
 
@@ -77,6 +75,7 @@ tablaT <- set_caption(tablaT, "Prueba post Andeva bajo el criterio de Tukey")
 tablaT
 
 if(!require(AgroR)){install.packages("AgroR")} 
+win.graph(11,11)
 with(nem,DIC(trat,pot_lar1,mcomp = "sk")) # Scott-Knott
 
 --------------
