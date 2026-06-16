@@ -19,6 +19,7 @@ dat # nitro/columna, gen/fila, planting/intersección
 # Layout
 
 libs(desplot)
+windows(11,11)
 desplot(dat, gen ~ col*row,
         out1=rep, col=nitro, text=planting, cex=1,
         main="Croquis de campo")
