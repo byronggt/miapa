@@ -6,12 +6,14 @@ if(!require(agricolae)){install.packages("agricolae")}
 if(!require(lsmeans)){install.packages("lsmeans")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(MASS)){install.packages("MASS")}
 if(!require(performance)){install.packages("performance")}
 
 # Eliminar objetos antiguos de la memoria
 rm(list=ls())
 
 PD<- fread("https://archive.org/download/Cerdos_201810/Cerdos.txt",header=T, sep="\t", dec=",")
+head(PD)
 Raz<- factor(PD$Raza)
 Con<- factor(PD$Conc)
 Re<-factor(PD$Rep)
@@ -19,6 +21,7 @@ Pe<-as.vector(PD$Peso)
 Pe1<-as.numeric(Pe)
 
 # Gráfico de la interacción
+windows(11,11)
 interaction.plot(Raz,Con,Pe1, fixed=F, xlab="Raza de Cerdos", ylab="Ganancia de Peso", legend = T, type = "b",trace.label="Concentrado", pch = c(5,7,5))
 
 # Gráfico de interacción con ggplot2
@@ -88,4 +91,3 @@ Tukey_C<-HSD.test(Pe1, Con, DFerror = 12, MSerror = 3.45);Tukey_C
 # Interacción Tipo de razas y porcentaje de concentrado
 
 Tukey_RC<-HSD.test(Pe1, Raz:Con, DFerror = 12, MSerror = 3.45);Tukey_RC
-

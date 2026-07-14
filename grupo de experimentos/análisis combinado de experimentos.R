@@ -15,7 +15,7 @@ if(!require(readxl)){install.packages("readxl")}
 # Experimento en bloques completos al azar
 
 # Importar la tabla de datos "frijol.xslx"
-grupo<-read_excel("frijol.xlsx")
+grupo<-read_excel("data/frijol.xlsx")
 head(grupo)
 tail(grupo)
 
