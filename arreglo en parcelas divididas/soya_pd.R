@@ -5,15 +5,19 @@ if(!require(readxl)){install.packages("readxl")}
 if(!require(doebioresearch)){install.packages("doebioresearch")}
 if(!require(performance)){install.packages("performance")}
 if(!require(dplyr)){install.packages("dplyr")}
+if(!require(AgroR)){install.packages("AgroR")}
 
 #Importar la tabla de datos
-pdsoya<-read_excel("soya_pardiv.xlsx")
+pdsoya<-read_excel("data/soya_pardiv.xlsx")
 attach(pdsoya)
 
 # Gráfico de la interacción
 interaction.plot(esurcos,dsem,rend, fixed=F, xlab="Distancia entre surcos", ylab="Rendimiento", legend = T, type = "b",trace.label="Distancia entre semillas", pch = c(5,7,5))
 
 # Análisis de varianza
+
+with(pdsoya, PSUBDBC(esurcos,dsem, bloque,rend, mcomp = "sk"))
+
 mod1<-splitplot(pdsoya[4],bloque,esurcos,dsem,3); mod1
 
 # Verificación de supuestos del modelo matemático-estadístico
