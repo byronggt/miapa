@@ -34,6 +34,7 @@ resp1<-as.numeric(resp)
 
 #Gráfico de la interacción
 
+windows(11,11)
 franjas %>% 
   ggplot() +
   aes(x = nitr, color = riego, group = riego, y = resp1) +
