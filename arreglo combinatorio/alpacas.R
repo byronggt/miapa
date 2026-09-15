@@ -5,7 +5,7 @@ if(!require(readxl)){install.packages("readxl")}
 if(!require(ScottKnott)){install.packages("ScottKnott")}
 if(!require(agricolae)){install.packages("agricolae")}
 
-alpacas<-read_excel("peso_alpacas.xlsx")
+alpacas<-read_excel("data/peso_alpacas.xlsx")
 head(alpacas)
 
 # Convertir a factores
