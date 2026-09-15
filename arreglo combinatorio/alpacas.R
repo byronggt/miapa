@@ -18,6 +18,7 @@ str(alpacas)
 attach(alpacas)
 
 # Gráficos de interacción
+windows(11,11)
 interaction.plot(ambiente,raza,peso, fixed=T, xlab="Ambiente", ylab="peso",col = "blue")
 interaction.plot(alimentacion,raza, peso, fixed=T, xlab="Alimentación", ylab="peso",col = "blue")
 interaction.plot(alimentacion, ambiente, peso, fixed=T, xlab="Alimentación", ylab="peso",col = "blue")
