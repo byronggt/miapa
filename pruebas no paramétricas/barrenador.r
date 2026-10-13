@@ -9,7 +9,7 @@ if(!require(FSA)){install.packages("FSA")}
 if(!require(rcompanion)){install.packages("rcompanion")}
 
 # Importar la tabla "barrenador" ------
-barr<-read_excel("barrenador.xlsx")
+barr<-read_excel("data/barrenador.xlsx")
 head(barr)
 
 # Calcular el estadístico de prueba
@@ -45,6 +45,7 @@ tabla_estilo_tukey <- tabla_estilo_tukey[order(-tabla_estilo_tukey$Mediana), c("
 print(tabla_estilo_tukey)
 
 ## Resolución mediante ggstatsplot ------
+
 windows(11,11)
 ggbetweenstats(
   data = barr,
