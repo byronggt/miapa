@@ -11,7 +11,7 @@ if(!require(rstatix)){install.packages("rstatix")}
 if(!require(agricolae)){install.packages("agricolae")}
 if(!require(ggpubr)){install.packages("ggpubr")}
 if(!require(readxl)){install.packages("readxl")}
-if(!require(AgroR)){install.packages("AgroR")}
+if(!require(MASS)){install.packages("MASS")}
 
 
 # Experimento en bloques completos al azar con
@@ -21,7 +21,7 @@ if(!require(AgroR)){install.packages("AgroR")}
 # Parcela pequeña: fertilizante (Fer)
 
 # Importar la tabla de datos "parsubdivmaiz.xslx"
-psdv<-read_excel("parsubdivmaiz.xlsx")
+psdv<-read_excel("data/parsubdivmaiz.xlsx")
 head(psdv)
 psdv$bloque<-as.factor(psdv$bloque)
 psdv$lab<-as.factor(psdv$lab)

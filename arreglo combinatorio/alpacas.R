@@ -5,7 +5,7 @@ if(!require(readxl)){install.packages("readxl")}
 if(!require(ScottKnott)){install.packages("ScottKnott")}
 if(!require(agricolae)){install.packages("agricolae")}
 
-alpacas<-read_excel("peso_alpacas.xlsx")
+alpacas<-read_excel("data/peso_alpacas.xlsx")
 head(alpacas)
 
 # Convertir a factores
@@ -18,6 +18,7 @@ str(alpacas)
 attach(alpacas)
 
 # Gráficos de interacción
+windows(11,11)
 interaction.plot(ambiente,raza,peso, fixed=T, xlab="Ambiente", ylab="peso",col = "blue")
 interaction.plot(alimentacion,raza, peso, fixed=T, xlab="Alimentación", ylab="peso",col = "blue")
 interaction.plot(alimentacion, ambiente, peso, fixed=T, xlab="Alimentación", ylab="peso",col = "blue")
